@@ -7,6 +7,7 @@ name = "pypi"
 pyTelegramBotAPI = "*"
 Django = "*"
 uwsgi = "*"
+psycopg2 = "*"
 
 [dev-packages]
 
