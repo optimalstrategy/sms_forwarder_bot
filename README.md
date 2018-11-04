@@ -3,7 +3,7 @@ A bot + broker that forwards SMS messages to telegram.
 
 ## Development
 1. Clone repostiory
-2. Add your telegram token to configs/development.env.
+2. Add your telegram token to configs/development.env
 3. Run docker-compose:
 ```
 # docker-compose -f docker-compose-dev.yml up
