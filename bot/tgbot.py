@@ -1,8 +1,8 @@
 from telebot import TeleBot, types
-from bot.load_django import load_django; load_django()
+
 from bot.models import TgUser
-from forwarder.settings import TELEGRAM_TOKEN
 from bot.singleton import SingletonType
+from forwarder.settings import TELEGRAM_TOKEN
 
 
 class Bot(TeleBot, metaclass=SingletonType):
@@ -51,4 +51,4 @@ class Bot(TeleBot, metaclass=SingletonType):
         return self.send_message(msg.chat.id, "Done! You are ready to receive notifications.")
 
 
-bot = Bot(TELEGRAM_TOKEN)
+__bot__ = Bot(TELEGRAM_TOKEN)

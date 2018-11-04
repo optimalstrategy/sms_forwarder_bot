@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get(
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "True") != "False"
 
 BASE_HOST = os.environ.get("FWD_BASE_HOST")
 
@@ -90,7 +90,7 @@ DATABASES = {
         'NAME': os.environ.get("DB_NAME", "postgres"),
         'USER': os.environ.get("DB_USER", "postgres"),
         'HOST': os.environ.get("DB_HOST", "localhost"),
-        'PORT': os.environ.get("DB_PORT", 32769),
+        'PORT': os.environ.get("DB_PORT", 5432),
         'PASSWORD': os.environ.get("DB_PASSWORD", "postgres"),
     }
 }

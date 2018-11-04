@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  db:
+    restart: always
+    image: postgres:latest
+    env_file: configs/development.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    expose:
+      - "5432"
+
+  web:
+    restart: always
+    build: .
+    command: sh /sms_forwarder_bot/configs/docker-entrypoint.sh uwsgi --ini /sms_forwarder_bot/configs/uwsgi.ini
+    env_file: configs/development.env
+    volumes:
+      - .:/sms_forwarder_bot
+    ports:
+      - "6336:8000"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
