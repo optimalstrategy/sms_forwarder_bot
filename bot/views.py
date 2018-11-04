@@ -4,7 +4,7 @@ from django.http import HttpRequest, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from telebot.types import Update
 
-from bot.tgbot import bot as bot_instance
+from bot.tgbot import __bot__ as bot_instance
 from bot.models import TgUser
 
 
