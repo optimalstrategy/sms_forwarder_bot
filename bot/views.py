@@ -78,3 +78,12 @@ def check_user(request: HttpRequest) -> HttpResponse:
     if 'code' in request.GET and request.GET['code'] != user.code:
         return HttpResponse(b"Bad code.", status=400)
     return HttpResponse(b"OK", status=200)
+
+
+def is_alive(request: HttpResponse) -> HttpResponse:
+    """
+    Returns code 200 if app is alive.
+
+    @endpoint /-/__heartbeat__
+    """
+    return HttpResponse(b"Alive", status=200)
