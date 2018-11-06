@@ -15,7 +15,7 @@ Container will be exposed at localhost:6336.
 1. Clone repository
 2. Fill missing ENV variables in configs/production.env
 3. Set up HTTPS proxy or put your certificate file in the project directory (Webhooks require HTTPS to work)
-4. Run docker-compose in productions mode:
+4. Run docker-compose in production mode:
 ```bash
 # docker-compose up
 ```
