@@ -21,4 +21,4 @@ Container will be exposed at localhost:6336.
 Container will be exposed at localhost:6336.
 
 ## TODO
-- copy-paste deployement
+- copy-paste deployment
