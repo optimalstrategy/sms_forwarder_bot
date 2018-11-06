@@ -1,6 +1,6 @@
 # SMS forwarder bot
 A bot + broker that forwards SMS messages to telegram. Designed to work with the [app](https://github.com/OptimalStrategy/sms_forwarder_app).
-<br>Deployed bot is running at https://forwarder.whaterver.team and accessible via https://t.me/smsforwarderrobot.
+<br>Deployed bot is running at https://forwarder.whatever.team and accessible via https://t.me/smsforwarderrobot.
 
 ## Development
 1. Clone repostiory
