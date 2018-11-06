@@ -1,5 +1,5 @@
 # SMS forwarder bot
-A bot + broker that forwards SMS messages to telegram.
+A bot + broker that forwards SMS messages to telegram. Designed to work with the app [link].
 
 ## Development
 1. Clone repostiory
@@ -19,3 +19,6 @@ Container will be exposed at localhost:6336.
 # docker-compose up
 ```
 Container will be exposed at localhost:6336.
+
+## TODO
+- copy-paste deployement
