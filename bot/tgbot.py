@@ -31,9 +31,10 @@ class Bot(TeleBot, metaclass=SingletonType):
         if msg.text.strip() == "/start":
             return self.send_message(msg.chat.id, "Install android app to forward messages.")
         data = msg.text.split(maxsplit=1)
+        data = data[-1].split('_', maxsplit=1)
         if len(data) < 2:
             return self.send_message(msg.chat.id, "Invalid setup command.")
-        code, username = data[1].split('_')
+        code, username = data
         username = username.lower()
 
         # Check if provided username and account are the same
