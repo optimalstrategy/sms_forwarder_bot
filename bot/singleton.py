@@ -2,6 +2,7 @@ class SingletonType(type):
     """
     A Singleton metaclass.
     """
+
     def __call__(cls, *args, **kwargs):
         """
         Returns instance if it's already exist, creates it otherwise.
