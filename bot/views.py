@@ -16,7 +16,7 @@ def web_hook_view(request: HttpRequest, *args, **kwargs) -> HttpResponse:
     @endpoint /{TOKEN}
     """
     # Return 403 if request is invalid
-    if request.content_type != 'application/json':
+    if request.content_type != "application/json":
         return HttpResponse(status=403)
 
     # Decode json from request body and process updates
@@ -36,13 +36,15 @@ def forward_sms(request: HttpRequest) -> HttpResponse:
     @params   [&{address, body, date}]
     """
     # Check for required params
-    if 'code' not in request.GET:
+    if "code" not in request.GET:
         return HttpResponse(b"The `code` param must be provided.", status=400)
-    if 'username' not in request.GET:
+    if "username" not in request.GET:
         return HttpResponse(b"The `username` param must be provided.", status=400)
     code = request.GET.get("code")
     username = request.GET.get("username")
-    address, body, date = [request.GET.get(f, "<>") for f in ('address', 'body', 'date')]
+    address, body, date = [
+        request.GET.get(f, "<>") for f in ("address", "body", "date")
+    ]
 
     # Get user instance and compare codes
     user = TgUser.by_username(username)
@@ -53,8 +55,7 @@ def forward_sms(request: HttpRequest) -> HttpResponse:
 
     # Forward SMS message
     bot_instance.send_message(
-        user.telegram_id,
-        f"New SMS message from \'{address}\':\n{body}\n\nDate: {date}."
+        user.telegram_id, f"New SMS message from '{address}':\n{body}\n\nDate: {date}."
     )
 
     return HttpResponse(status=200)
@@ -70,12 +71,12 @@ def check_user(request: HttpRequest) -> HttpResponse:
     @param    [& code]
     """
     # Check for required param
-    if 'username' not in request.GET:
+    if "username" not in request.GET:
         return HttpResponse(b"The `username` param must be provided.", status=400)
     user = TgUser.by_username(request.GET.get("username"))
     if user is None:
         return HttpResponse(b"Such user does not exist.", status=404)
-    if 'code' in request.GET and request.GET['code'] != user.code:
+    if request.GET.get("code", -1) != user.code:
         return HttpResponse(b"Bad code.", status=400)
     return HttpResponse(b"OK", status=200)
 
