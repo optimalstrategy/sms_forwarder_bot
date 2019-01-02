@@ -41,15 +41,15 @@ class Bot(TeleBot, metaclass=SingletonType):
         # Check if provided username and account are the same
         if username != msg.from_user.username.lower():
             return self.send_message(
-                msg.chat.id, "You can not setup bot for other users."
+                msg.chat.id, "You cannot setup bot for other users."
             )
 
         u = TgUser.by_username(username)
+        # Create new TgUser account if such user does not exist
         if u is None:
-            # Create new TgUser account
             TgUser.create(msg.chat.id, code, username)
+        # Otherwise update the code
         else:
-            # Update client code
             u.code = code
             u.save()
         return self.send_message(
