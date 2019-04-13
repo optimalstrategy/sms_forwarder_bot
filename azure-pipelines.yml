@@ -39,7 +39,7 @@ steps:
 
 - script: |
     pushd '$(projectRoot)'
-    PYTHONPATH=$projectRoot DJANGO_SETTINGS_MODULE=forwarder.settings DJANGO_DEBUG=True python -m pytest -s -vv --doctest-modules --cov=com --cov-report=xml --cov-report=html bot/tests.py
+    PYTHONPATH=$projectRoot DJANGO_SETTINGS_MODULE=forwarder.settings DJANGO_DEBUG=True python -m pytest -s -vv --doctest-modules bot/tests.py
   displayName: 'Run tests'
 
 - task: PublishTestResults@2
