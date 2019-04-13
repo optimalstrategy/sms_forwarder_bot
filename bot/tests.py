@@ -47,9 +47,7 @@ class TestAPIMethods(TestCase):
 
     @patch("bot.views.bot_instance")
     def test_forward_sms__bad_user(self, mock: MagicMock):
-        response = self.client.get(
-            f"/forward?code={self.code}&username=random_user"
-        )
+        response = self.client.get(f"/forward?code={self.code}&username=random_user")
         self.assertEqual(response.status_code, 404)
 
     @patch("bot.views.bot_instance")
