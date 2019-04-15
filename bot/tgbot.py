@@ -29,7 +29,10 @@ class Bot(TeleBot, metaclass=SingletonType):
         """
         if msg.text.strip() == "/start":
             return self.send_message(
-                msg.chat.id, "Install android app to forward messages."
+                msg.chat.id,
+                'Install the <a href="https://github.com/OptimalStrategy/sms_forwarder_app">android app</a> '
+                "to get your SMS messages delivered straight to your inbox.",
+                parse_mode="HTML",
             )
         data = msg.text.split(maxsplit=1)
         data = data[-1].split("_", maxsplit=1)
