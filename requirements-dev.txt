@@ -5,7 +5,7 @@ black==19.10b0
 certifi==2019.9.11
 chardet==3.0.4
 Click==7.0
-Django==2.2.8
+Django==3.0.2
 idna==2.8
 more-itertools==7.2.0
 pluggy==0.13.1
