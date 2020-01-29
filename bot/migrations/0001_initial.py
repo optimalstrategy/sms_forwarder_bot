@@ -7,16 +7,18 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='TgUser',
+            name="TgUser",
             fields=[
-                ('code', models.CharField(max_length=8)),
-                ('username', models.CharField(max_length=50, unique=True)),
-                ('telegram_id', models.IntegerField(primary_key=True, serialize=False, unique=True)),
+                ("code", models.CharField(max_length=8)),
+                ("username", models.CharField(max_length=50, unique=True)),
+                (
+                    "telegram_id",
+                    models.IntegerField(primary_key=True, serialize=False, unique=True),
+                ),
             ],
         ),
     ]

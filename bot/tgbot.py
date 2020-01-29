@@ -6,18 +6,14 @@ from forwarder.settings import TELEGRAM_TOKEN
 
 
 class Bot(TeleBot, metaclass=SingletonType):
-    """
-    TeleBot with singleton metaclass.
-    """
-
     def __init__(self, token: str):
         """
         Instantiates the bot.
+
         :param token: Telegram bot token
         """
         super().__init__(token)
 
-        # Setup handlers
         self.handle_start = self.message_handler(commands=["start"])(self.handle_start)
 
     def handle_start(self, msg: types.Message) -> types.Message:
@@ -31,7 +27,7 @@ class Bot(TeleBot, metaclass=SingletonType):
             return self.send_message(
                 msg.chat.id,
                 'Install the <a href="https://github.com/OptimalStrategy/sms_forwarder_app">android app</a> '
-                "to get your SMS messages delivered straight to your inbox.",
+                "to get your SMS messages delivered to you in this chat.",
                 parse_mode="HTML",
             )
         data = msg.text.split(maxsplit=1)
@@ -41,17 +37,15 @@ class Bot(TeleBot, metaclass=SingletonType):
         code, username = data
         username = username.lower()
 
-        # Check if provided username and account are the same
+        # Check if the provided username and the account's username are the same
         if username != msg.from_user.username.lower():
             return self.send_message(
-                msg.chat.id, "You cannot setup bot for other users."
+                msg.chat.id, "You cannot setup the bot for other users."
             )
 
         u = TgUser.by_username(username)
-        # Create new TgUser account if such user does not exist
         if u is None:
             TgUser.create(msg.chat.id, code, username)
-        # Otherwise update the code
         else:
             u.code = code
             u.save()
