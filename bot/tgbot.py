@@ -6,7 +6,6 @@ from forwarder.settings import TELEGRAM_TOKEN
 
 
 class Bot(TeleBot, metaclass=SingletonType):
-
     def __init__(self, token: str):
         """
         Instantiates the bot.
