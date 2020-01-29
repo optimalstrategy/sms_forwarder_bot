@@ -15,11 +15,10 @@ def web_hook_view(request: HttpRequest, *args, **kwargs) -> HttpResponse:
 
     @endpoint /{TOKEN}
     """
-    # Return 403 if request is invalid
+    # Return 403 if the request is not in JSON
     if request.content_type != "application/json":
         return HttpResponse(status=403)
 
-    # Decode json from request body and process updates
     json_string = json.loads(request.body)
     update = Update.de_json(json_string)
     bot_instance.process_new_updates([update])
@@ -28,7 +27,7 @@ def web_hook_view(request: HttpRequest, *args, **kwargs) -> HttpResponse:
 
 def forward_sms(request: HttpRequest) -> HttpResponse:
     """
-    Forwards SMS to a user.
+    Forwards an SMS message to a user.
 
     @endpoint /forward
     @param    ?code=<code>
@@ -46,14 +45,12 @@ def forward_sms(request: HttpRequest) -> HttpResponse:
         request.GET.get(f, "<>") for f in ("address", "body", "date")
     ]
 
-    # Get user instance and compare codes
     user = TgUser.by_username(username)
     if user is None:
         return HttpResponse(b"Such user does not exist.", status=404)
     if user.code != code:
         return HttpResponse(b"Bad code.", status=401)
 
-    # Forward SMS message
     bot_instance.send_message(
         user.telegram_id, f"New SMS message from '{address}':\n{body}\n\nDate: {date}."
     )
@@ -63,14 +60,12 @@ def forward_sms(request: HttpRequest) -> HttpResponse:
 
 def check_user(request: HttpRequest) -> HttpResponse:
     """
-    Returns 200 if user exists.
-
+    Returns 200 if the user exists.
 
     @endpoint /check_user
     @param    ?username=<username>
     @param    [& code]
     """
-    # Check for required param
     if "username" not in request.GET:
         return HttpResponse(b"The `username` param must be provided.", status=400)
     user = TgUser.by_username(request.GET.get("username"))
@@ -83,7 +78,7 @@ def check_user(request: HttpRequest) -> HttpResponse:
 
 def is_alive(request: HttpResponse) -> HttpResponse:
     """
-    Returns code 200 if app is alive.
+    Returns code 200 if the app is alive.
 
     @endpoint /-/__heartbeat__
     """

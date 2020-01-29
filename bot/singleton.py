@@ -5,11 +5,7 @@ class SingletonType(type):
 
     def __call__(cls, *args, **kwargs):
         """
-        Returns instance if it's already exist, creates it otherwise.
-
-        :param args: class args
-        :param kwargs: class kwargs
-        :return: class instance
+        Returns the instance if already exists, creates it otherwise.
         """
         try:
             return cls.__instance
@@ -19,7 +15,8 @@ class SingletonType(type):
 
     def get_instance(cls):
         """
-        Returns existing class instance.
+        Returns the existing class instance.
+
         :return: class instance
         """
         return cls.__instance
