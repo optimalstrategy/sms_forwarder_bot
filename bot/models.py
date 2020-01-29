@@ -12,26 +12,26 @@ class TgUser(models.Model):
     @classmethod
     def by_username(cls, username: str) -> Optional["TgUser"]:
         """
-        Returns user with given username or None.
+        Returns the user with the given username or None.
 
         :param username: username
         :return: user instance or None
         """
         try:
-            return TgUser.objects.get(username=username)
+            return TgUser.objects.get(username=username.lower())
         except ObjectDoesNotExist:
             return None
 
     @classmethod
     def create(cls, telegram_id: int, code: str, username: str):
         """
-        Creates new TgUser.
+        Creates a new TgUser.
 
         :param telegram_id: chat id
         :param code: client code
         :param username: user's @handle
         :return: TgUser instance
         """
-        t = TgUser(code=code, username=username, telegram_id=telegram_id)
+        t = TgUser(code=code, username=username.lower(), telegram_id=telegram_id)
         t.save()
         return t
