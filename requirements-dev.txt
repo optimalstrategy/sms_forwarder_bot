@@ -6,7 +6,7 @@ black==19.10b0
 certifi==2019.11.28
 chardet==3.0.4
 Click==7.0
-Django==3.0.2
+Django==3.0.3
 idna==2.8
 more-itertools==8.2.0
 packaging==20.1
