@@ -6,7 +6,7 @@ black==19.10b0
 certifi==2019.11.28
 chardet==3.0.4
 Click==7.0
-Django==3.0.2
+Django==3.0.3
 idna==2.8
 more-itertools==8.2.0
 packaging==20.1
@@ -21,9 +21,9 @@ pytest-black==0.3.7
 pytest-django==3.8.0
 pytz==2019.3
 regex==2020.2.20
-requests==2.22.0
+requests==2.23.0
 six==1.14.0
-sqlparse==0.3.0
+sqlparse==0.3.1
 toml==0.10.0
 typed-ast==1.4.1
 urllib3==1.25.8
