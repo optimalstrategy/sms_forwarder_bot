@@ -18,7 +18,7 @@ pyparsing==2.4.6
 pytest==5.4.1
 pyTelegramBotAPI==3.6.7
 pytest-black==0.3.8
-pytest-django==3.8.0
+pytest-django==3.9.0
 pytz==2019.3
 regex==2020.2.20
 requests==2.23.0
