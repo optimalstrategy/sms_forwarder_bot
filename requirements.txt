@@ -1,7 +1,7 @@
 asgiref==3.2.5
 certifi==2019.11.28
 chardet==3.0.4
-Django==3.0.4
+Django==3.0.5
 idna==2.9
 psycopg2-binary==2.8.4
 pyTelegramBotAPI==3.6.7
