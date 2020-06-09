@@ -16,7 +16,7 @@ psycopg2-binary==2.8.5
 py==1.8.1
 pyparsing==2.4.7
 pytest==5.4.3
-pyTelegramBotAPI==3.6.7
+pyTelegramBotAPI==3.7.1
 pytest-black==0.3.8
 pytest-django==3.9.0
 pytz==2019.3
