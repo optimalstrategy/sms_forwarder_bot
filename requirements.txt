@@ -4,7 +4,7 @@ chardet==3.0.4
 Django==3.0.7
 idna==2.9
 psycopg2-binary==2.8.5
-pyTelegramBotAPI==3.6.7
+pyTelegramBotAPI==3.7.1
 pytz==2020.1
 requests==2.23.0
 six==1.14.0
