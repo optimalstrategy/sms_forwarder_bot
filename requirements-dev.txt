@@ -19,7 +19,7 @@ pytest==5.4.3
 pyTelegramBotAPI==3.6.7
 pytest-black==0.3.8
 pytest-django==3.9.0
-pytz==2019.3
+pytz==2020.1
 regex==2020.6.8
 requests==2.23.0
 six==1.14.0
