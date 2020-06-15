@@ -9,7 +9,7 @@ Click==7.1.2
 Django==3.0.7
 idna==2.9
 more-itertools==8.2.0
-packaging==20.3
+packaging==20.4
 pathspec==0.8.0
 pluggy==0.13.1
 psycopg2-binary==2.8.5
