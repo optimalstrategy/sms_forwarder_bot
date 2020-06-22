@@ -21,7 +21,7 @@ pytest-black==0.3.8
 pytest-django==3.9.0
 pytz==2020.1
 regex==2020.6.8
-requests==2.23.0
+requests==2.24.0
 six==1.14.0
 sqlparse==0.3.1
 toml==0.10.0
