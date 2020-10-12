@@ -1,5 +1,5 @@
 appdirs==1.4.4
-asgiref==3.2.7
+asgiref==3.3.0
 atomicwrites==1.4.0
 attrs==19.3.0
 black==19.10b0
