@@ -34,16 +34,21 @@ def forward_sms(request: HttpRequest) -> HttpResponse:
     @param    &username=<username>
     @params   [&{address, body, date}]
     """
-    # Check for required params
-    if "code" not in request.GET:
+    params = request.GET
+    params.update(request.POST or {})
+    try:
+        params.update(json.loads(request.body))
+    except json.JSONDecodeError:
+        pass
+
+    # Check for the required parameters
+    if "code" not in params:
         return HttpResponse(b"The `code` param must be provided.", status=400)
-    if "username" not in request.GET:
+    if "username" not in params:
         return HttpResponse(b"The `username` param must be provided.", status=400)
-    code = request.GET.get("code")
-    username = request.GET.get("username")
-    address, body, date = [
-        request.GET.get(f, "<>") for f in ("address", "body", "date")
-    ]
+    code = params.get("code")
+    username = params.get("username")
+    address, body, date = [params.get(f, "<>") for f in ("address", "body", "date")]
 
     user = TgUser.by_username(username)
     if user is None:
