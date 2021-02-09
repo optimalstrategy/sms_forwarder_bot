@@ -24,7 +24,7 @@ def web_hook_view(request: HttpRequest, *args, **kwargs) -> HttpResponse:
     bot_instance.process_new_updates([update])
     return HttpResponse(status=200)
 
-
+@csrf_exempt
 def forward_sms(request: HttpRequest) -> HttpResponse:
     """
     Forwards an SMS message to a user.
