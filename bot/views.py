@@ -1,6 +1,6 @@
 import json
 
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, RawPostDataException
 from django.views.decorators.csrf import csrf_exempt
 from telebot.types import Update
 
@@ -24,6 +24,7 @@ def web_hook_view(request: HttpRequest, *args, **kwargs) -> HttpResponse:
     bot_instance.process_new_updates([update])
     return HttpResponse(status=200)
 
+
 @csrf_exempt
 def forward_sms(request: HttpRequest) -> HttpResponse:
     """
@@ -34,11 +35,11 @@ def forward_sms(request: HttpRequest) -> HttpResponse:
     @param    &username=<username>
     @params   [&{address, body, date}]
     """
-    params = request.GET
+    params = dict(request.GET)
     params.update(request.POST or {})
     try:
         params.update(json.loads(request.body))
-    except json.JSONDecodeError:
+    except (json.JSONDecodeError, RawPostDataException):
         pass
 
     # Check for the required parameters
@@ -46,6 +47,7 @@ def forward_sms(request: HttpRequest) -> HttpResponse:
         return HttpResponse(b"The `code` param must be provided.", status=400)
     if "username" not in params:
         return HttpResponse(b"The `username` param must be provided.", status=400)
+    params = {k: p[0] if isinstance(p, list) else p for k, p in params.items()}
     code = params.get("code")
     username = params.get("username")
     address, body, date = [params.get(f, "<>") for f in ("address", "body", "date")]

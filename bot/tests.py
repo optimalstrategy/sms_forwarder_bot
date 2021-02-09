@@ -56,3 +56,11 @@ class TestAPIMethods(TestCase):
             f"/forward?code=random_code&username={self.username}"
         )
         self.assertEqual(response.status_code, 401)
+
+    @patch("bot.views.bot_instance")
+    def test_forward_sms__post_requests_are_supported(self, mock: MagicMock):
+        response = self.client.post(
+            f"/forward?code={self.code}&username={self.username}",
+            data={"address": "test123", "name": "abc"},
+        )
+        self.assertEqual(response.status_code, 200)
