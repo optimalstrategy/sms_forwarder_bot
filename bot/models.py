@@ -1,13 +1,37 @@
-from typing import Optional
+from typing import Optional, Set
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
+MAX_CLIENTS = 4
+CODE_LENGTH = 8
+
 
 class TgUser(models.Model):
-    code = models.CharField(max_length=8)
+    codes = models.CharField(max_length=(CODE_LENGTH + len(",")) * MAX_CLIENTS)
     username = models.CharField(max_length=50, unique=True)
     telegram_id = models.IntegerField(unique=True, primary_key=True)
+
+    def add_code(self, code: str) -> None:
+        """
+        Adds the given client code to the set of codes that may be used to message this user.
+
+        :param code: a client code
+        """
+        codes = self.client_codes
+        if len(codes) == MAX_CLIENTS:
+            raise ValueError(f"Too many clients ({MAX_CLIENTS} max)")
+        codes.add(code)
+        self.codes = ",".join(codes)
+
+    @property
+    def client_codes(self) -> Set[str]:
+        """
+        Returns the set of the codes belonging to the clients that may message this user.
+
+        :return: set of client codes
+        """
+        return set(filter(None, self.codes.split(",")))
 
     @classmethod
     def by_username(cls, username: str) -> Optional["TgUser"]:
@@ -23,7 +47,7 @@ class TgUser(models.Model):
             return None
 
     @classmethod
-    def create(cls, telegram_id: int, code: str, username: str):
+    def create(cls, telegram_id: int, code: str, username: str) -> "TgUser":
         """
         Creates a new TgUser.
 
@@ -32,6 +56,6 @@ class TgUser(models.Model):
         :param username: user's @handle
         :return: TgUser instance
         """
-        t = TgUser(code=code, username=username.lower(), telegram_id=telegram_id)
+        t = TgUser(codes=code, username=username.lower(), telegram_id=telegram_id)
         t.save()
         return t
