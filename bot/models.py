@@ -8,7 +8,7 @@ CODE_LENGTH = 8
 
 
 class TgUser(models.Model):
-    codes = models.CharField(max_length=(CODE_LENGTH + len(",")) * MAX_CLIENTS)
+    codes = models.CharField(max_length=(CODE_LENGTH + len(",")) * MAX_CLIENTS, default="")
     username = models.CharField(max_length=50, unique=True)
     telegram_id = models.IntegerField(unique=True, primary_key=True)
 
