@@ -15,6 +15,7 @@ class Bot(TeleBot, metaclass=SingletonType):
         super().__init__(token)
 
         _ = self.message_handler(commands=["start"])(self.handle_start)
+        _ = self.message_handler(commands=["add"])(self.handle_add)
 
     def handle_start(
         self, msg: types.Message, clear_codes: bool = True
