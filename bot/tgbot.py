@@ -69,7 +69,7 @@ class Bot(TeleBot, metaclass=SingletonType):
 
         """
         try:
-            msg.text += f" {msg.from_user.username}"
+            msg.text += f"_{msg.from_user.username}"
             return self.handle_start(msg, clear_codes=False)
         except ValueError:
             return self.send_message(
