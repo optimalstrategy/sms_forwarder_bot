@@ -55,7 +55,7 @@ def forward_sms(request: HttpRequest) -> HttpResponse:
     user = TgUser.by_username(username)
     if user is None:
         return HttpResponse(b"Such user does not exist.", status=404)
-    if user.code != code:
+    if code not in user.client_codes:
         return HttpResponse(b"Bad code.", status=401)
 
     bot_instance.send_message(
@@ -78,7 +78,7 @@ def check_user(request: HttpRequest) -> HttpResponse:
     user = TgUser.by_username(request.GET.get("username"))
     if user is None:
         return HttpResponse(b"Such user does not exist.", status=404)
-    if request.GET.get("code", -1) != user.code:
+    if request.GET.get("code", -1) not in user.client_codes:
         return HttpResponse(b"Bad code.", status=400)
     return HttpResponse(b"OK", status=200)
 

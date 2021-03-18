@@ -1,13 +1,13 @@
-asgiref==3.2.7
-certifi==2020.4.5.2
-chardet==3.0.4
-Django==3.0.7
-idna==2.9
-psycopg2-binary==2.8.5
-pyTelegramBotAPI==3.7.1
-pytz==2020.1
-requests==2.23.0
-six==1.14.0
-sqlparse==0.3.1
-urllib3==1.25.9
-uWSGI==2.0.18
+asgiref==3.3.1; python_version >= "3.6"
+certifi==2020.12.5; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0"
+chardet==4.0.0; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0"
+django==3.1.7; python_version >= "3.6"
+idna==2.10; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0"
+psycopg2-binary==2.8.6; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.4.0")
+pytelegrambotapi==3.7.6
+pytz==2021.1; python_version >= "3.6"
+requests==2.25.1; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0"
+six==1.15.0; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.3.0")
+sqlparse==0.4.1; python_version >= "3.6"
+urllib3==1.26.4; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version < "4"
+uwsgi==2.0.19.1
