@@ -1,0 +1,46 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: pytelegrambotapi
+    versions:
+    - 3.7.7
+  - dependency-name: django
+    versions:
+    - 3.1.6
+  - dependency-name: more-itertools
+    versions:
+    - 8.6.0
+    - 8.7.0
+  - dependency-name: packaging
+    versions:
+    - "20.8"
+    - "20.9"
+  - dependency-name: requests
+    versions:
+    - 2.25.1
+  - dependency-name: certifi
+    versions:
+    - 2020.12.5
+  - dependency-name: asgiref
+    versions:
+    - 3.3.1
+  - dependency-name: toml
+    versions:
+    - 0.10.2
+  - dependency-name: pytest-black
+    versions:
+    - 0.3.12
+  - dependency-name: wcwidth
+    versions:
+    - 0.2.5
+  - dependency-name: uwsgi
+    versions:
+    - 2.0.19.1
+  - dependency-name: six
+    versions:
+    - 1.15.0
