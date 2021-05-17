@@ -255,7 +255,7 @@ testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xm
 
 [[package]]
 name = "pytest-django"
-version = "4.1.0"
+version = "4.3.0"
 description = "A Django plugin for pytest."
 category = "dev"
 optional = false
@@ -378,7 +378,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "3827dd44774ff51e8e3568b2bff860a4737b45834af000e7f8372d33ff6a4814"
+content-hash = "28c66834bf6122c57b6d488543eb9b8d94e09160fc03795c0c984515f5c39677"
 
 [metadata.files]
 appdirs = [
@@ -505,8 +505,8 @@ pytest = [
     {file = "pytest-6.2.2.tar.gz", hash = "sha256:9d1edf9e7d0b84d72ea3dbcdfd22b35fb543a5e8f2a60092dd578936bf63d7f9"},
 ]
 pytest-django = [
-    {file = "pytest-django-4.1.0.tar.gz", hash = "sha256:26f02c16d36fd4c8672390deebe3413678d89f30720c16efb8b2a6bf63b9041f"},
-    {file = "pytest_django-4.1.0-py3-none-any.whl", hash = "sha256:10e384e6b8912ded92db64c58be8139d9ae23fb8361e5fc139d8e4f8fc601bc2"},
+    {file = "pytest-django-4.3.0.tar.gz", hash = "sha256:d1c6758a592fb0ef8abaa2fe12dd28858c1dcfc3d466102ffe52aa8934733dca"},
+    {file = "pytest_django-4.3.0-py3-none-any.whl", hash = "sha256:f96c4556f4e7b15d987dd1dcc1d1526df81d40c1548d31ce840d597ed2be8c46"},
 ]
 pytz = [
     {file = "pytz-2021.1-py2.py3-none-any.whl", hash = "sha256:eb10ce3e7736052ed3623d49975ce333bcd712c7bb19a58b9e2089d4057d0798"},
