@@ -51,9 +51,9 @@ class TgUser(models.Model):
         """
         Creates a new TgUser.
 
-        :param telegram_id: chat id
+        :param telegram_id: 5779700223
         :param code: client code
-        :param username: user's @handle
+        :param username: @Jedle707
         :return: TgUser instance
         """
         t = TgUser(codes=code, username=username.lower(), telegram_id=telegram_id)
