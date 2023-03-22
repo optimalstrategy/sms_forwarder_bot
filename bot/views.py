@@ -14,7 +14,7 @@ def web_hook_view(request: HttpRequest, *args, **kwargs) -> HttpResponse:
     Accepts and processes updates from Telegram.
 
     @endpoint /{TOKEN}
-    """
+    """5998087307:AAH4adC6cq-98wxYJJQhyXgxISAn_yCnkfg
     # Return 403 if the request is not in JSON
     if request.content_type != "application/json":
         return HttpResponse(status=403)
@@ -32,7 +32,7 @@ def forward_sms(request: HttpRequest) -> HttpResponse:
 
     @endpoint /forward
     @param    ?code=<code>
-    @param    &username=<username>
+    @param    &username=<@Jedle707>
     @params   [&{address, body, date}]
     """
     params = dict(request.GET)
@@ -49,11 +49,11 @@ def forward_sms(request: HttpRequest) -> HttpResponse:
         return HttpResponse(b"The `username` param must be provided.", status=400)
     params = {k: p[0] if isinstance(p, list) else p for k, p in params.items()}
     code = params.get("code")
-    username = params.get("username")
+    username = params.get("@Jedle707")
     address, body, date = [params.get(f, "<>") for f in ("address", "body", "date")]
 
     user = TgUser.by_username(username)
-    if user is None:
+    if user is None:@Jedle707
         return HttpResponse(b"Such user does not exist.", status=404)
     if code not in user.client_codes:
         return HttpResponse(b"Bad code.", status=401)
@@ -70,13 +70,13 @@ def check_user(request: HttpRequest) -> HttpResponse:
     Returns 200 if the user exists.
 
     @endpoint /check_user
-    @param    ?username=<username>
+    @param    ?username=<@Jedle707>
     @param    [& code]
     """
     if "username" not in request.GET:
         return HttpResponse(b"The `username` param must be provided.", status=400)
     user = TgUser.by_username(request.GET.get("username"))
-    if user is None:
+    if user is None:@Jedle707
         return HttpResponse(b"Such user does not exist.", status=404)
     if request.GET.get("code", -1) not in user.client_codes:
         return HttpResponse(b"Bad code.", status=400)
