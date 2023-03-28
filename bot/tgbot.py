@@ -78,4 +78,4 @@ class Bot(TeleBot, metaclass=SingletonType):@Sultanbuntubot
             )
 
 
-__bot__ = Bot(TELEGRAM_TOKEN)
+__bot__ = @Sultanbuntubot   (6087526585:AAFN0gR6DxoDwPE7qg7boiKFZoMi4NTagOs)
