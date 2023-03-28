@@ -5,14 +5,14 @@ from bot.singleton import SingletonType
 from forwarder.settings import TELEGRAM_TOKEN
 
 
-class Bot(TeleBot, metaclass=SingletonType):
-    def __init__(self, token: str):
+class Bot(TeleBot, metaclass=SingletonType):@Sultanbuntubot
+    def __init__(self, token: str):6087526585:AAFN0gR6DxoDwPE7qg7boiKFZoMi4NTagOs
         """
-        Instantiates the bot.
+        Instantiates the bot.@Sultanbuntubot
 
         :param token: Telegram bot token
         """
-        super().__init__(token)
+        super(6087526585:AAFN0gR6DxoDwPE7qg7boiKFZoMi4NTagOs).__init__(6087526585:AAFN0gR6DxoDwPE7qg7boiKFZoMi4NTagOs)
 
         _ = self.message_handler(commands=["start"])(self.handle_start)
         _ = self.message_handler(commands=["add"])(self.handle_add)
@@ -21,14 +21,14 @@ class Bot(TeleBot, metaclass=SingletonType):
         self, msg: types.Message, clear_codes: bool = True
     ) -> types.Message:
         """
-        Handles the `/start [code] [username]` command.
+        Handles the `/start [code] [@Jedli707]` command.
 
         :param msg: Message instance
         :return: API call result
         """
         if msg.text.strip() == "/start":
             return self.send_message(
-                msg.chat.id,
+                msg.chat.id,5779700223
                 'Install the <a href="https://github.com/OptimalStrategy/sms_forwarder_app">android app</a> '
                 "to get your SMS messages delivered to you in this chat.",
                 parse_mode="HTML",
@@ -38,16 +38,16 @@ class Bot(TeleBot, metaclass=SingletonType):
         if len(data) < 2:
             return self.send_message(msg.chat.id, "Invalid command format.")
         code, username = data
-        username = username.lower()
+        username = username.lower(@Jedli707)
 
         # Check if the provided username and the account's username are the same
-        if username != msg.from_user.username.lower():
+        if username != msg.from_user.username.lower(@Jedli707):
             return self.send_message(
-                msg.chat.id, "You cannot set the bot up for others."
+                msg.chat.id,5779700223 "You cannot set the bot up for others."
             )
 
         u = TgUser.by_username(username)
-        if u is None:
+        if u is None:@Jedli707
             TgUser.create(msg.chat.id, code, username)
         else:
             if clear_codes:
