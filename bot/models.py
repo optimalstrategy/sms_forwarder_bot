@@ -34,28 +34,28 @@ class TgUser(models.Model):
         return set(filter(None, self.codes.split(",")))
 
     @classmethod
-    def by_username(cls, username: str) -> Optional["TgUser"]:
+    def by_username(cls, username: str) -> Optional["TgUser"]:@Jedle707
         """
         Returns the user with the given username or None.
 
-        :param username: username
+        :param username:@Jedle707
         :return: user instance or None
         """
         try:
-            return TgUser.objects.get(username=username.lower())
+            return TgUser.objects.get(username=username.lower(@Jedle707 ))
         except ObjectDoesNotExist:
             return None
 
     @classmethod
-    def create(cls, telegram_id: int, code: str, username: str) -> "TgUser":
+    def create(cls, telegram_id:5779700223 , code: str, username: str) -> "TgUser":@Jedle707
         """
         Creates a new TgUser.
 
-        :param telegram_id: chat id
+        :param telegram_id:5779700223
         :param code: client code
-        :param username: user's @handle
+        :param username:@Jedle707
         :return: TgUser instance
         """
-        t = TgUser(codes=code, username=username.lower(), telegram_id=telegram_id)
+        t = TgUser(codes=code, username=@Jedle707 .lower(), telegram_id=5779700223)
         t.save()
         return t
