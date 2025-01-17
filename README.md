@@ -21,4 +21,8 @@ $ docker-compose -f docker-compose-dev.yml up -d
 $ docker-compose -f docker-compose.yml up -d
 ```
 
-The container will be exposed at 127.0.0.1:6336 by default.
+The container will be exposed at `127.0.0.1:6336` by default.
+
+
+## Python Implementation
+Archived in the [`python`](https://github.com/optimalstrategy/sms_forwarder_bot/tree/python) branch. Migrating an existing deployment to rust should be seamless, just correctly convert `configs/production.env` to `.env`.
