@@ -1,7 +1,7 @@
 use std::net::IpAddr;
 
 use axum::{
-    body::{Body, Bytes},
+    body::Bytes,
     extract::{Json, Query},
     http::StatusCode,
     response::{IntoResponse, Response},
