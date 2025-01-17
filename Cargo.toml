@@ -1,0 +1,38 @@
+[package]
+name = "sms-forwarder-bot"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "1.0.217", features = ["derive"] }
+serde_json = "1.0.135"
+teloxide = { version = "0.13.0", features = [
+    "sqlx",
+    "axum",
+    "webhooks-axum",
+    "rustls",
+    "nightly",
+    "macros",
+] }
+tokio = { version = "1.43.0", features = ["macros", "rt-multi-thread"] }
+tracing = "0.1.41"
+tracing-log = "0.2.0"
+tracing-subscriber = { version = "0.3.19", features = ["env-filter", "std"] }
+sqlx = { version = "0.7.4", features = [
+    "runtime-tokio-native-tls",
+    "postgres",
+    "uuid",
+    "time",
+] }
+anyhow = { version = "1.0.95", features = ["backtrace"] }
+axum = { version = "0.7.9", features = ["tower-log"] }
+tower = "0.5.2"
+tower-http = { version = "0.6.2", features = ["add-extension", "trace"] }
+serde_derive = "1.0.217"
+envconfig = "0.11.0"
+percent-encoding = "2.3.1"
+url = "2.5.4"
+axum-limit = "0.1.0-alpha.2"
+axum-client-ip = "0.6.0"
+lazy_static = "1.5.0"
+rand = "0.8.5"

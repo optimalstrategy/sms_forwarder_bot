@@ -4,23 +4,45 @@ services:
   db:
     restart: always
     image: postgres:latest
-    env_file: configs/production.env
+    env_file: .env
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     expose:
-      - "5432"
+      - "${DB_PORT:-5432}"
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME:-postgres}
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-postgres}'"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
 
   web:
     restart: always
-    build: .
-    command: sh /sms_forwarder_bot/configs/docker-entrypoint.sh uwsgi --ini /sms_forwarder_bot/configs/uwsgi.ini
-    env_file: configs/production.env
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+    command: 
+    env_file: .env
     volumes:
       - .:/sms_forwarder_bot
     ports:
-      - "6336:8000"
+      - "127.0.0.1:${FWD_SERVER_PORT:-6336}:${FWD_SERVER_PORT:-6336}"
     depends_on:
       - db
+    environment:
+      DB_HOST: db
+      FWD_SERVER_HOST: ${FWD_SERVER_HOST:-0.0.0.0}
+      FWD_SERVER_PORT: ${FWD_SERVER_PORT:-6336}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://web:${FWD_SERVER_PORT:-6336}/-/__heartbeat__"]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
 volumes:
   postgres_data:
