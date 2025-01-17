@@ -1,6 +1,7 @@
 use std::net::IpAddr;
 
 use axum::{
+    body::{Body, Bytes},
     extract::{Json, Query},
     http::StatusCode,
     response::{IntoResponse, Response},
@@ -68,8 +69,12 @@ async fn forward_sms(
     context: Extension<AppContext>,
     _: LimitPerSecond<7, ClientIP>,
     Query(UsernameAndCodeQueryParams { username, code }): Query<UsernameAndCodeQueryParams>,
-    Json(body): Json<ForwardedSmsBody>,
+    raw_body: Bytes,
 ) -> Result<impl IntoResponse, AppError> {
+    let Ok(Json(body)) = Json::<ForwardedSmsBody>::from_bytes(&raw_body) else {
+        return Ok((StatusCode::UNPROCESSABLE_ENTITY, "Invalid JSON body."));
+    };
+
     let mut conn = context.db.acquire().await?;
     let Some(user) = crate::queries::find_user_by_username(&mut *conn, &username).await? else {
         return Ok((StatusCode::NOT_FOUND, "Invalid code or username."));
